@@ -6,37 +6,44 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.sql.Date;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Card{
+public class Card {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(length = 16)
+    @Column
+    @Size(min = 16, max = 16)
     private String number;
-    @Column(length = 3)
+
+    @Column
+    @Size(min= 4,max=4)
+    private String pinCode;
+
+    @Column
+    @Size(min = 3, max = 3)
     private String cvv;
 
     @ManyToOne
     private Bank bank;
+
     @ManyToOne
     private User user;
 
     private String fullName;
 
-    @Column(length = 4)
-    private String pinCode;
-
     private Date expireDate;
 
     @Enumerated(EnumType.STRING)
     private CardType cardType;
+
     private boolean active = false; // xodim kimgadr cardni bermagancha active bo'lmaydi
     private boolean blocked = false; //blok
     private double balance;

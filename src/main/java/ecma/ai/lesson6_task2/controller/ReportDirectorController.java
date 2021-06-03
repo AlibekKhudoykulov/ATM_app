@@ -1,7 +1,6 @@
 package ecma.ai.lesson6_task2.controller;
 
 import ecma.ai.lesson6_task2.Service.ATMHistoryService;
-import ecma.ai.lesson6_task2.Service.ATMmanagerHistoryService;
 import ecma.ai.lesson6_task2.Service.ATMservice;
 import ecma.ai.lesson6_task2.payload.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,15 +12,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.text.ParseException;
-
 @RestController
 @RequestMapping("/api/director")
 public class ReportDirectorController {
     @Autowired
     ATMHistoryService atmHistoryService;
-    @Autowired
-    ATMmanagerHistoryService atMmanagerHistoryService;
+
     @Autowired
     ATMservice ATMservice;
 
@@ -40,11 +36,7 @@ public class ReportDirectorController {
         ApiResponse atmHistory = atmHistoryService.getDailyOutgoings(id);
         return ResponseEntity.status(atmHistory.isSuccess()? HttpStatus.OK:HttpStatus.CONFLICT).body(atmHistory);
     }
-    @GetMapping("/filledAtm/{id}")
-    public HttpEntity<?> getFilledAtm(@PathVariable Integer id){
-        ApiResponse atmHistory = atMmanagerHistoryService.getHistory(id);
-        return ResponseEntity.status(atmHistory.isSuccess()? HttpStatus.OK:HttpStatus.CONFLICT).body(atmHistory);
-    }
+
     @GetMapping("/banknotes/{id}")
     public HttpEntity<?> getBanknotesByATMid(@PathVariable Integer id){
         ApiResponse atmHistory = ATMservice.getBanknotes(id);

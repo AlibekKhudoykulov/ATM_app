@@ -24,15 +24,6 @@ public class ATMHistory {
     private ATM atm;
 
     @Column
-    private LocalDate date;
-
-    @ManyToOne
-    private User user;
-
-    @ManyToOne
-    private Card card;
-
-    @Column
     private double operationAmount;
 
     @Enumerated(value = EnumType.STRING)

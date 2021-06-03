@@ -25,21 +25,17 @@ public class ATM {
     private Bank bank;
 
     @OneToMany(mappedBy = "atm",cascade = CascadeType.ALL)
-    private List<BanknoteCountUZS> banknoteCountUZS;
-
-    @OneToMany(mappedBy = "atm",cascade = CascadeType.ALL)
-    private List<BanknoteCountUSD> banknoteCountUSD;
+    private List<BanknoteCount> banknoteCount;
 
     private double balanceUZS;
+
     private double balanceUSD;
+
     private double maxWithdrawal; //Maksimum yechish mumkin bo'lgan summa
+
     private double alertAmount; //minimum - shunga yetib kelganda bank hodimiga message boradi
+
     private String address;
-
-
-
-
-
 }
 
 
