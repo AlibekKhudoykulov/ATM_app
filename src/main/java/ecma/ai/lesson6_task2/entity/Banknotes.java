@@ -1,32 +1,29 @@
 package ecma.ai.lesson6_task2.entity;
 
 import ecma.ai.lesson6_task2.entity.enums.ATMOperationType;
+import ecma.ai.lesson6_task2.entity.enums.USDBankNoteType;
+import ecma.ai.lesson6_task2.entity.enums.UZSBankNoteType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ATMHistory {
-
+public class Banknotes {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne
-    private ATM atm;
-
-    @Column
-    private double operationAmount;
+    @Enumerated(value = EnumType.STRING)
+    private USDBankNoteType usdBankNoteType;
 
     @Enumerated(value = EnumType.STRING)
-    private ATMOperationType operationType;
+    private UZSBankNoteType uzsBankNoteType;//10 000
+
+    private Integer count;//5
 
 }

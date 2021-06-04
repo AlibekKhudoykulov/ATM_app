@@ -24,18 +24,22 @@ public class ATM {
     @ManyToOne
     private Bank bank;
 
-    @OneToMany(mappedBy = "atm",cascade = CascadeType.ALL)
-    private List<BanknoteCount> banknoteCount;
-
     private double balanceUZS;
 
     private double balanceUSD;
+
+    private double nativeCommission = 0.05;//BANKOMAT ORNATGAN BANK UCHUN KOMISSIYA MIQDORI
+
+    private double foreignCommission = 0.1;//BOSHQA BANK KARTALARI UCHUN COMISSIYA MIQDORI
 
     private double maxWithdrawal; //Maksimum yechish mumkin bo'lgan summa
 
     private double alertAmount; //minimum - shunga yetib kelganda bank hodimiga message boradi
 
     private String address;
+
+    @OneToMany
+    private List<Banknotes> banknotes;
 }
 
 
