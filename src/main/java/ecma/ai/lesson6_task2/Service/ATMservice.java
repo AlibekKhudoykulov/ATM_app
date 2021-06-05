@@ -20,8 +20,9 @@ public class ATMservice {
         if (!byId.isPresent()) return new ApiResponse("ATM not found",false);
         ATM atm = byId.get();
         List<Object> banknotes=new ArrayList<>();
-        banknotes.add(atm.getBanknoteCountUSD());
-        banknotes.add(atm.getBanknoteCountUZS());
+        banknotes.add(atm.getBanknotes());
+        banknotes.add(atm.getBalanceUSD());
+        banknotes.add(atm.getBalanceUZS());
         return new ApiResponse("Banknotes",true,banknotes);
     }
 }
