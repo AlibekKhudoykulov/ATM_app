@@ -18,15 +18,13 @@ public class ATM {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ElementCollection
-    private List<CardType> cardTypes;
+    @Enumerated(EnumType.STRING)
+    private CardType cardTypes;
 
     @ManyToOne
     private Bank bank;
 
-    private double balanceUZS;
-
-    private double balanceUSD;
+    private double balance;
 
     private double nativeCommission = 0.05;//BANKOMAT ORNATGAN BANK UCHUN KOMISSIYA MIQDORI
 

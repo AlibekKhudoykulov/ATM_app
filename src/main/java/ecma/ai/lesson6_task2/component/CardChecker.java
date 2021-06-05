@@ -15,6 +15,8 @@ public class CardChecker {
                 .toLocalDate();
     }
     public boolean check(Card card){
+        if (card.isActive() || card.isBlocked())
+            return false;
         Date expireDate = card.getExpireDate();
         LocalDate expireLocalDate = convertToLocalDateViaInstant(expireDate);
         LocalDate localDate = LocalDate.now();

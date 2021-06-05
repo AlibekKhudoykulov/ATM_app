@@ -67,8 +67,9 @@ public class DataLoader implements CommandLineRunner {
                     Date.valueOf("2021-05-04"), CardType.HUMO, false, false, 0));
 
             cardRepository.saveAll(cardList);
-            userRepository.save(new User(1, "ZZZ", director));
-            userRepository.save(new User(2, "QQQ", manager));
+            userRepository.save(new User(1, "director", director));
+            userRepository.save(new User(2, "manager", manager));
+            userRepository.save(new User(3, "user", user));
         }
     }
 }
