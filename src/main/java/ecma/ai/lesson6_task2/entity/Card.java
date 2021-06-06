@@ -4,16 +4,20 @@ import ecma.ai.lesson6_task2.entity.enums.CardType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.sql.Date;
+import java.util.Collection;
+import java.util.Collections;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Card {
+public class Card implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -60,5 +64,40 @@ public class Card {
         this.active = active;
         this.blocked = blocked;
         this.balance = balance;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Collections.singleton(user.getRole());
+    }
+
+    @Override
+    public String getPassword() {
+        return pinCode;
+    }
+
+    @Override
+    public String getUsername() {
+        return number;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return active;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return !blocked;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return active;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return active;
     }
 }
