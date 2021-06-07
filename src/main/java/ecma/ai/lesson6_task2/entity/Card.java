@@ -48,23 +48,13 @@ public class Card implements UserDetails{
     @Enumerated(EnumType.STRING)
     private CardType cardType;
 
+    private boolean accountNonExpired = true;
+    private boolean accountNonLocked = true;
+    private boolean credentialsNonExpired = true;
     private boolean active = false; // xodim kimgadr cardni bermagancha active bo'lmaydi
     private boolean blocked = false; //blok
     private double balance;
 
-    public Card(Integer id, String number, String cvv, Bank bank, String fullName, String pinCode, Date expireDate, CardType cardType, boolean active, boolean blocked, double balance) {
-        this.id = id;
-        this.number = number;
-        this.cvv = cvv;
-        this.bank = bank;
-        this.fullName = fullName;
-        this.pinCode = pinCode;
-        this.expireDate = expireDate;
-        this.cardType = cardType;
-        this.active = active;
-        this.blocked = blocked;
-        this.balance = balance;
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -83,21 +73,36 @@ public class Card implements UserDetails{
 
     @Override
     public boolean isAccountNonExpired() {
-        return this.active;
+        return this.accountNonExpired;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return this.blocked;
+        return this.accountNonLocked;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return this.active;
+        return this.credentialsNonExpired;
     }
 
     @Override
     public boolean isEnabled() {
         return this.active;
+    }
+
+
+    public Card(Integer id, String number, String cvv, Bank bank, String fullName, String pinCode, Date expireDate, CardType cardType, boolean active, boolean blocked, double balance) {
+        this.id = id;
+        this.number = number;
+        this.cvv = cvv;
+        this.bank = bank;
+        this.fullName = fullName;
+        this.pinCode = pinCode;
+        this.expireDate = expireDate;
+        this.cardType = cardType;
+        this.active = active;
+        this.blocked = blocked;
+        this.balance = balance;
     }
 }
