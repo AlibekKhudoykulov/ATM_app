@@ -21,8 +21,7 @@ public class ATMservice {
         ATM atm = byId.get();
         List<Object> banknotes=new ArrayList<>();
         banknotes.add(atm.getBanknotes());
-        banknotes.add(atm.getBalanceUSD());
-        banknotes.add(atm.getBalanceUZS());
+        banknotes.add(atm.getBanknotes());
         return new ApiResponse("Banknotes",true,banknotes);
     }
 }

@@ -17,7 +17,7 @@ import java.util.Collections;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Card implements UserDetails {
+public class Card implements UserDetails{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -73,31 +73,31 @@ public class Card implements UserDetails {
 
     @Override
     public String getPassword() {
-        return pinCode;
+        return this.pinCode;
     }
 
     @Override
     public String getUsername() {
-        return number;
+        return this.number;
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return active;
+        return this.active;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return !blocked;
+        return this.blocked;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return active;
+        return this.active;
     }
 
     @Override
     public boolean isEnabled() {
-        return active;
+        return this.active;
     }
 }
